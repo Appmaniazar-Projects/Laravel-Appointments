@@ -4,14 +4,14 @@
     <div style="margin-bottom: 10px;" class="row">
         <div class="col-lg-12">
             <a class="btn btn-success" href="{{ route("admin.appointments.create") }}">
-                {{ trans('global.add') }} {{ trans('cruds.appointment.title_singular') }}
+               Add Booking
             </a>
         </div>
     </div>
 @endcan
 <div class="card">
     <div class="card-header">
-        {{ trans('cruds.appointment.title_singular') }} {{ trans('global.list') }}
+      Booking List
     </div>
 
     <div class="card-body">
@@ -25,10 +25,13 @@
                         {{ trans('cruds.appointment.fields.id') }}
                     </th>
                     <th>
-                        {{ trans('cruds.appointment.fields.client') }}
+                     Event Name
                     </th>
                     <th>
-                        {{ trans('cruds.appointment.fields.employee') }}
+                      Booked Venue
+                    </th>
+                    <th>
+                       EO Contact
                     </th>
                     <th>
                         {{ trans('cruds.appointment.fields.start_time') }}
@@ -37,13 +40,13 @@
                         {{ trans('cruds.appointment.fields.finish_time') }}
                     </th>
                     <th>
-                        {{ trans('cruds.appointment.fields.price') }}
+                       Capacity (%)
                     </th>
                     <th>
                         {{ trans('cruds.appointment.fields.comments') }}
                     </th>
                     <th>
-                        {{ trans('cruds.appointment.fields.services') }}
+                       Road Closure
                     </th>
                     <th>
                         &nbsp;
@@ -101,11 +104,12 @@
     columns: [
       { data: 'placeholder', name: 'placeholder' },
 { data: 'id', name: 'id' },
+{ data: 'name', name: 'name.name' },
 { data: 'client_name', name: 'client.name' },
-{ data: 'employee_name', name: 'employee.name' },
+{ data: 'employee_name', name: 'employee_name' },
 { data: 'start_time', name: 'start_time' },
 { data: 'finish_time', name: 'finish_time' },
-{ data: 'price', name: 'price' },
+{ data: 'capacity', name: 'capacity' },
 { data: 'comments', name: 'comments' },
 { data: 'services', name: 'services.name' },
 { data: 'actions', name: '{{ trans('global.actions') }}' }

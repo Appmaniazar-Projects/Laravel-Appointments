@@ -16,6 +16,7 @@ class CreateAppointmentServicePivotTable extends Migration
             $table->unsignedInteger('service_id');
 
             $table->foreign('service_id', 'service_id_fk_360720')->references('id')->on('services')->onDelete('cascade');
+           
         });
     }
 }

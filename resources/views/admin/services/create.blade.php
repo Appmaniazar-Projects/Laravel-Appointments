@@ -3,7 +3,7 @@
 
 <div class="card">
     <div class="card-header">
-        {{ trans('global.create') }} {{ trans('cruds.service.title_singular') }}
+        Add Road
     </div>
 
     <div class="card-body">
@@ -22,8 +22,8 @@
                 </p>
             </div>
             <div class="form-group {{ $errors->has('price') ? 'has-error' : '' }}">
-                <label for="price">{{ trans('cruds.service.fields.price') }}</label>
-                <input type="number" id="price" name="price" class="form-control" value="{{ old('price', isset($service) ? $service->price : '') }}" step="0.01">
+              
+              
                 @if($errors->has('price'))
                     <em class="invalid-feedback">
                         {{ $errors->first('price') }}

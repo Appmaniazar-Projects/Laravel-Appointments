@@ -9,9 +9,8 @@ class CreateEmployeesTable extends Migration
     public function up()
     {
         Schema::create('employees', function (Blueprint $table) {
-            $table->increments('id');
-
-            $table->string('name');
+            $table->increments('id')->nullable();
+            $table->string('name')->nullable();
 
             $table->string('email')->nullable();
 

@@ -12,17 +12,21 @@ class SystemCalendarController extends Controller
     {
         $events = [];
 
-        $appointments = Appointment::with(['client', 'employee'])->get();
-
+        $appointments = Appointment::with(['client','services'])->get();
+    
         foreach ($appointments as $appointment) {
             if (!$appointment->start_time) {
                 continue;
             }
 
             $events[] = [
-                'title' => $appointment->client->name . ' ('.$appointment->employee->name.')',
+                'title' => $appointment->client->name ,
+                'name' => $appointment->name,
                 'start' => $appointment->start_time,
-                'url'   => route('admin.appointments.edit', $appointment->id),
+                'capacity' =>$appointment->capacity,
+                'road_closure' => $appointment->services, 
+                'end' => $appointment->finish_time,
+                'url'   => route('admin.appointments.show', $appointment->id),
             ];
         }
 

@@ -1,5 +1,16 @@
 @extends('layouts.app')
 @section('content')
+<style>
+    
+    
+    body{
+    background-size:cover;
+    background-image:url(../images/back.jpg);
+
+
+}
+</style>
+
 <div class="row justify-content-center">
     <div class="col-md-8">
         <div class="card-group">
@@ -10,9 +21,10 @@
                             {{ \Session::get('message') }}
                         </p>
                     @endif
+                    
                     <form method="POST" action="{{ route('login') }}">
-                        {{ csrf_field() }}
-                        <h1>{{ trans('panel.site_title') }}</h1>
+                        @csrf <!-- {{ csrf_field() }} -->
+                            <center><img src="{{asset('images/city-logo.png')}}" alt="" ></center>
                         <p class="text-muted">{{ trans('global.login') }}</p>
 
                         <div class="input-group mb-3">

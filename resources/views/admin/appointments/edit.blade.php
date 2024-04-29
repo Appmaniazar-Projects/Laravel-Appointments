@@ -7,11 +7,25 @@
     </div>
 
     <div class="card-body">
-        <form action="{{ route("admin.appointments.update", [$appointment->id]) }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route("admin.appointments.update", [$appointment->id]) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
+
+
+            <div class="form-group {{ $errors->has('name') ? 'has-error' : '' }}">
+                <label for="name">Event Name</label>
+                <input id="name" name="name" class="form-control " {{ old('name', isset($appointment) ? $appointment->name : '') }} />
+                @if($errors->has('name'))
+                    <em class="invalid-feedback">
+                        {{ $errors->first('name') }}
+                    </em>
+                @endif
+                <p class="helper-block">
+               
+                </p>
+            </div>
             <div class="form-group {{ $errors->has('client_id') ? 'has-error' : '' }}">
-                <label for="client">{{ trans('cruds.appointment.fields.client') }}*</label>
+                <label for="client">Venue*</label>
                 <select name="client_id" id="client" class="form-control select2" required>
                     @foreach($clients as $id => $client)
                         <option value="{{ $id }}" {{ (isset($appointment) && $appointment->client ? $appointment->client->id : old('client_id')) == $id ? 'selected' : '' }}>{{ $client }}</option>
@@ -23,19 +37,9 @@
                     </em>
                 @endif
             </div>
-            <div class="form-group {{ $errors->has('employee_id') ? 'has-error' : '' }}">
-                <label for="employee">{{ trans('cruds.appointment.fields.employee') }}</label>
-                <select name="employee_id" id="employee" class="form-control select2">
-                    @foreach($employees as $id => $employee)
-                        <option value="{{ $id }}" {{ (isset($appointment) && $appointment->employee ? $appointment->employee->id : old('employee_id')) == $id ? 'selected' : '' }}>{{ $employee }}</option>
-                    @endforeach
-                </select>
-                @if($errors->has('employee_id'))
-                    <em class="invalid-feedback">
-                        {{ $errors->first('employee_id') }}
-                    </em>
-                @endif
-            </div>
+
+
+            
             <div class="form-group {{ $errors->has('start_time') ? 'has-error' : '' }}">
                 <label for="start_time">{{ trans('cruds.appointment.fields.start_time') }}*</label>
                 <input type="text" id="start_time" name="start_time" class="form-control datetime" value="{{ old('start_time', isset($appointment) ? $appointment->start_time : '') }}" required>
@@ -60,12 +64,12 @@
                     {{ trans('cruds.appointment.fields.finish_time_helper') }}
                 </p>
             </div>
-            <div class="form-group {{ $errors->has('price') ? 'has-error' : '' }}">
-                <label for="price">{{ trans('cruds.appointment.fields.price') }}</label>
-                <input type="number" id="price" name="price" class="form-control" value="{{ old('price', isset($appointment) ? $appointment->price : '') }}" step="0.01">
-                @if($errors->has('price'))
+            <div class="form-group {{ $errors->has('capacity') ? 'has-error' : '' }}">
+                <label for="capacity">Capacity</label>
+                <input type="number" id="capacity" name="capacity" class="form-control" value="{{ old('capacity', isset($appointment) ? $appointment->capacity : '') }}" step="0.01">
+                @if($errors->has('capacity'))
                     <em class="invalid-feedback">
-                        {{ $errors->first('price') }}
+                        {{ $errors->first('capacity') }}
                     </em>
                 @endif
                 <p class="helper-block">
@@ -85,7 +89,7 @@
                 </p>
             </div>
             <div class="form-group {{ $errors->has('services') ? 'has-error' : '' }}">
-                <label for="services">{{ trans('cruds.appointment.fields.services') }}
+                <label for="services">Road Closure
                     <span class="btn btn-info btn-xs select-all">{{ trans('global.select_all') }}</span>
                     <span class="btn btn-info btn-xs deselect-all">{{ trans('global.deselect_all') }}</span></label>
                 <select name="services[]" id="services" class="form-control select2" multiple="multiple">

@@ -49,11 +49,11 @@ class AppointmentsController extends Controller
             });
 
             $table->addColumn('employee_name', function ($row) {
-                return $row->employee ? $row->employee->name : '';
+                return $row->employee_name;;
             });
 
-            $table->editColumn('price', function ($row) {
-                return $row->price ? $row->price : "";
+            $table->editColumn('capacity', function ($row) {
+                return $row->capacity ? $row->capacity : "";
             });
             $table->editColumn('comments', function ($row) {
                 return $row->comments ? $row->comments : "";
@@ -109,8 +109,9 @@ class AppointmentsController extends Controller
 
         $appointment->load('client', 'employee', 'services');
 
-        return view('admin.appointments.edit', compact('clients', 'employees', 'services', 'appointment'));
-    }
+        $employee_name = $appointment->employee ? $appointment->employee->name : '';
+
+        return view('admin.appointments.edit', compact('clients', 'employees', 'services', 'appointment', 'employee_name'));    }
 
     public function update(UpdateAppointmentRequest $request, Appointment $appointment)
     {

@@ -20,6 +20,14 @@
                     </tr>
                     <tr>
                         <th>
+                           Name
+                        </th>
+                        <td>
+                            {{ $appointment->name }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
                             {{ trans('cruds.appointment.fields.client') }}
                         </th>
                         <td>
@@ -28,13 +36,15 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.appointment.fields.employee') }}
+                           EO Contact
                         </th>
                         <td>
-                            {{ $appointment->employee->name ?? '' }}
+                        {{ $appointment->employee_name }}
                         </td>
                     </tr>
                     <tr>
+
+
                         <th>
                             {{ trans('cruds.appointment.fields.start_time') }}
                         </th>
@@ -52,10 +62,10 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.appointment.fields.price') }}
+                            Capacity
                         </th>
                         <td>
-                            ${{ $appointment->price }}
+                            {!! $appointment->capacity !!}%
                         </td>
                     </tr>
                     <tr>
@@ -68,7 +78,7 @@
                     </tr>
                     <tr>
                         <th>
-                            Services
+                            Road Closure
                         </th>
                         <td>
                             @foreach($appointment->services as $id => $services)

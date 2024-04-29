@@ -1,7 +1,8 @@
 <?php
 
 Route::redirect('/', '/login');
-Route::redirect('/home', '/admin');
+
+Route::redirect('/home', 'admin/appointments/create');
 Auth::routes(['register' => false]);
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => ['auth']], function () {
@@ -33,7 +34,11 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 
     // Appointments
     Route::delete('appointments/destroy', 'AppointmentsController@massDestroy')->name('appointments.massDestroy');
+  //  Route::resource('bookings', 'AppointmentsController', ['as' => 'appointments']);
     Route::resource('appointments', 'AppointmentsController');
+
+  // Route::get('appointments/{appointment}', 'AppointmentsController@show')->name('admin.appointment.show');
+
 
     Route::get('system-calendar', 'SystemCalendarController@index')->name('systemCalendar');
 });
